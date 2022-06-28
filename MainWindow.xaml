@@ -1,0 +1,111 @@
+﻿<Window x:Class="Zadanie1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Zadanie1"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="470" Width="820">
+    <Window.Resources>
+        <SolidColorBrush x:Key="kolorDlaLabel" Color="#900"/>
+        <SolidColorBrush x:Key="kolorDlaStylButton1" Color="#FFE8CB4C"/>
+        <SolidColorBrush x:Key="StatycznyKolorDlaStylButton2" Color="#FF1B2476"/>
+        <SolidColorBrush x:Key="IsMouseOverKolorDlaStylButton2" Color="#FF4F1545"/>
+        <SolidColorBrush x:Key="IsPressedKolorDlaStylButton2" Color="#FFF3D511"/>
+        <Style x:Key="StylLabel1" TargetType="Label">
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style x:Key="StylLabel2" BasedOn="{StaticResource StylLabel1}" TargetType="Label">
+            <Setter Property="Foreground" Value="{StaticResource kolorDlaLabel}"/>
+        </Style>
+        <Style x:Key="StylButton1" TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource kolorDlaStylButton1}"/>
+        </Style>
+        <Style x:Key="StylButton2" TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource StatycznyKolorDlaStylButton2}" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}">
+                            <Grid>
+                                <ContentPresenter x:Name="MyContentPresenter"
+                                    Content="{TemplateBinding Content}"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Margin="0,0,0,0"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{StaticResource IsMouseOverKolorDlaStylButton2}" />
+                                <Setter Property="Foreground" Value="White" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="{StaticResource IsPressedKolorDlaStylButton2}" />
+                                <Setter Property="Foreground" Value="White" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="35*" MinWidth="100"/>
+            <ColumnDefinition Width="31*"  MinWidth="120"/>
+        </Grid.ColumnDefinitions>
+        <WrapPanel
+            Height="409"           
+            VerticalAlignment="Top"
+            Grid.Column="1" Margin="10,0,0,0">
+            <Button
+                Content="Button1"
+                Width="Auto"
+                Style="{StaticResource StylButton2}"/>
+            <Button
+                Content="Button2"
+                Width="Auto" 
+                Style="{StaticResource StylButton1}"/>
+            <ToggleButton
+                Content="Button3"
+                Width="Auto"/>
+            <CalendarButton
+                Content="Button4"
+                Width="Auto"
+                Height="50"/>
+            <CalendarDayButton
+                Content="Button5"
+                Width="75"
+                Height="50"/>
+            <RadioButton
+                Content="Button6"
+                Width="75"/>
+        </WrapPanel>
+        <StackPanel 
+            Height="252"
+            VerticalAlignment="Top"
+            Grid.Column="0"
+            Margin="10,0,0,0" HorizontalAlignment="Left" Width="400">
+            <Label
+                Content="Zwykły przycisk"
+                Style="{StaticResource StylLabel1}"/>
+            <Label
+                Content="Przycisk toggle"
+                Style="{StaticResource StylLabel2}"/>
+            <Label
+                Content="Przycisk kalendarza"
+                Style="{StaticResource StylLabel1}"/>
+            <Label
+                Content="Przycisk kalendarza dnia"
+                Style="{StaticResource StylLabel1}"/>
+            <Label
+                Content="Przycisk radia"
+                Style="{StaticResource StylLabel1}"/>
+        </StackPanel>
+    </Grid>
+</Window>
